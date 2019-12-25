@@ -3,29 +3,28 @@
  */
 package com.mrc.db.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.mrc.db.dto.T_MEMBER;
+import com.mrc.db.dto.T_MEMBER_COND;
 
 /**
  * @author jsh
  *
  */
 @Repository
-public class ApiDao  {
+public class MemberDao {
 	protected static final String NAMESPACE = "com.mrc.db.dao.";
 
 	@Autowired
 	private SqlSession sqlSession;
-
-	public String selectName(){
+	
+	public List<T_MEMBER> getMemberList(T_MEMBER_COND Cond){
 		//return "";
-		
-		
-		//T_MEMBER member = new T_MEMBER();
-		
-		
-		return sqlSession.selectOne(NAMESPACE + "selectName");
+		return 	sqlSession.selectList(NAMESPACE + "getMemberList", Cond);
 	}
 }
-
