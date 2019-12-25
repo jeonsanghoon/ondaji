@@ -3,13 +3,10 @@
  */
 package com.mrc.db.dto;
 
-import java.io.Serializable;
 import java.sql.Date;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
  * @author jsh
@@ -18,11 +15,11 @@ import lombok.ToString;
 
 @Getter 
 @Setter
-@ToString
-@Builder
-public class T_MEMBER implements Serializable{
+
+public class T_MEMBER{
 	private String mode;
 	private int MEMBER_CODE;
+	private String MEMBER_ID;
 	private String MEMBER_NAME;
 	private String MEMBER_PW;
 	private int INSERT_CODE;

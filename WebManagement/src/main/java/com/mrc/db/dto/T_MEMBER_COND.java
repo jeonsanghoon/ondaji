@@ -16,6 +16,7 @@ import lombok.Setter;
 @Setter
 public class T_MEMBER_COND  {
 	private Integer MEMBER_CODE;
+	private String MEMBER_ID;
 	private String MEMBER_NAME;
 	private String MEMBER_PW;
 }
