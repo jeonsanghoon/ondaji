@@ -11,9 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @MapperScan(basePackages = "com.mrc")
 @EnableAutoConfiguration
 public class WebManagementApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(WebManagementApplication.class, args);
 	}
-
 }

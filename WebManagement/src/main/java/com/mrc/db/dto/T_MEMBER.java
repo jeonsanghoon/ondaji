@@ -24,4 +24,6 @@ public class T_MEMBER{
 	private String MEMBER_PW;
 	private int INSERT_CODE;
 	private Date INSERT_DATE;
+	private int UPDATE_CODE;
+	private Date UPDATE_DATE;
 }
