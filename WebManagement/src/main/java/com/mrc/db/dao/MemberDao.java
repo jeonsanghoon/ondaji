@@ -9,8 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mrc.db.dto.T_MEMBER;
-import com.mrc.db.dto.T_MEMBER_COND;
+import com.mrc.db.dto.member_cond;
+import com.mrc.db.dto.t_member;
 
 /**
  * @author jsh
@@ -23,8 +23,9 @@ public class MemberDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<T_MEMBER> getMemberList(T_MEMBER_COND Cond){
+	public List<t_member> getMemberList(member_cond Cond){
 		//return "";
+		
 		return 	sqlSession.selectList(NAMESPACE + "getMemberList", Cond);
 	}
 }
