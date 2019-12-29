@@ -6,7 +6,6 @@ package com.mrc.db.dto;
 import java.sql.Date;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,9 +16,12 @@ import lombok.Setter;
 
 @Getter 
 @Setter
-@Data
 @Builder
 public class t_member {
+	
+	/**
+	 * 
+	 */
 	
 	private int member_code;
 	private String member_id;
