@@ -30,7 +30,7 @@ public class ApiController {
 	@Autowired
 	private MemberDao memberDao;
 
-	@GetMapping(path = "/")
+	@GetMapping(path = "/localtime")
 	public String index() {
 		return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 	}

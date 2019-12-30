@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * @author jsh
@@ -22,12 +21,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/static/css/**, /static/js/**, /static/img/**, /static/lib/**, *.ico");		// Resources 파일이나 Javascript 파일 경로 무시 
+		web.ignoring().antMatchers("/","/static/css/**, /static/js/**, /static/img/**, /static/lib/**, *.ico");		// Resources 파일이나 Javascript 파일 경로 무시 
 	} 
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+		/*
 		http.csrf().disable();		// 개발 시 에만
 		
 		http.authorizeRequests()
@@ -47,6 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.logoutSuccessUrl("/")
 			.invalidateHttpSession(true);
 		
-		http.authenticationProvider(authProvider);
+		http.authenticationProvider(authProvider);*/
 	}
 }
