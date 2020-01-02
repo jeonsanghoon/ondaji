@@ -48,9 +48,10 @@ public class ApiController {
 		
 
 		List<t_member> list = memberDao.memberlist(member_cond.builder()
-				.member_code(1)
-				.member_id("mrc0700@gmail.com")
-				.member_pw("1111").build());
+				//.member_code(1)
+				//.member_id("mrc0700@gmail.com")
+				.member_pw("1111")
+				.build());
 		
 		
 		// return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
