@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import GlobalComponent from './components/global-component'
+
+Vue.component(GlobalComponent.name, GlobalComponent)
 
 Vue.config.productionTip = false
 
