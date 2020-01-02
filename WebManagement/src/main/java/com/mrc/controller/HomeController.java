@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	  @RequestMapping(value={"", "/index", "/error", "/*"}, method = RequestMethod.GET)
-	    public String index() {
+	  //@RequestMapping(value={"", "/index", "/error", "/*"}, method = RequestMethod.GET)
+	@RequestMapping(value={"", "/index", "/error", "/*"}, method = RequestMethod.GET)
+	public String index() {
 	        return "index";
-	    }
+	}
 }
