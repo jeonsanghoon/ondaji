@@ -13,3 +13,4 @@ export default new Router({
     }
   ]
 })
+alert(`Vue version : ${Vue.version}`);

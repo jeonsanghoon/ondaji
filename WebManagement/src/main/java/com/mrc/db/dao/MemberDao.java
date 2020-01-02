@@ -5,6 +5,7 @@ package com.mrc.db.dao;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,8 +24,8 @@ public class MemberDao {
 	private MemberMapper mapper;
 
 	public List<t_member> memberlist(member_cond member) {
-
-		member.setMember_pw(Global.SecurityInfo.encryptSHA256(member.getMember_pw()));
+		if(!StringUtils.isBlank(member.getMember_pw()))
+			member.setMember_pw(Global.SecurityInfo.encryptSHA256(member.getMember_pw()));
 		List<t_member> list = mapper.getMemberList(member);
 		// return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 		return list;
