@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/","/static/css/**, /static/js/**, /static/img/**, /static/lib/**, *.ico");		// Resources 파일이나 Javascript 파일 경로 무시 
+		web.ignoring().antMatchers("/","/static/css/**,/static/layout/**, /static/js/**, /static/img/**, /static/lib/**, *.ico");		// Resources 파일이나 Javascript 파일 경로 무시 
 	} 
 
 	@Override
