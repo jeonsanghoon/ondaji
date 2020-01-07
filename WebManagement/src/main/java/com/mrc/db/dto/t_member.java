@@ -3,11 +3,15 @@
  */
 package com.mrc.db.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author jsh
@@ -17,18 +21,17 @@ import lombok.Setter;
 @Getter 
 @Setter
 @Builder
+@ToString
 public class t_member {
-	
-	/**
-	 * 
-	 */
-	
 	private int member_code;
 	private String member_id;
 	private String member_name;
+	@JsonIgnore
 	private String member_pw;
 	private int insert_code;
-	private Date insert_date;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private Timestamp insert_date;
 	private int update_code;
-	private Date update_date;
+	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private Timestamp update_date;
 }

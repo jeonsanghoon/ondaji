@@ -44,13 +44,10 @@ public class ApiController {
 
 	@GetMapping(path = "/memberlist")
 	public List<t_member> memberlist() {
-
-		
-
 		List<t_member> list = memberDao.memberlist(member_cond.builder()
 				//.member_code(1)
 				//.member_id("mrc0700@gmail.com")
-				.member_pw("1111")
+				//.member_pw("1111")
 				.build());
 		
 		
