@@ -10,6 +10,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mrc.db.dao.ApiDao;
@@ -22,7 +26,9 @@ import com.mrc.framework.Global;
  * @author jsh
  *
  */
+
 @RestController
+
 public class ApiController {
 	@Autowired
 	private ApiDao apiDao;
@@ -31,7 +37,7 @@ public class ApiController {
 	private MemberDao memberDao;
 
 	@GetMapping(path = "/localtime")
-	public String index() {
+	public String localtime() {
 		return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 	}
 
@@ -43,6 +49,7 @@ public class ApiController {
 	}
 
 	@GetMapping(path = "/memberlist")
+	
 	public List<t_member> memberlist() {
 		List<t_member> list = memberDao.memberlist(member_cond.builder()
 				//.member_code(1)
@@ -72,4 +79,33 @@ public class ApiController {
 		String rtn = memberDao.memberSave(list);
 		return rtn;
 	}
+	
+	// 로그인
+     
+    @RequestMapping(path="/member/dologin",headers="Accept=application/json", method =  {RequestMethod.GET, RequestMethod.POST})
+    public String dologin(@RequestBody member_cond cond) {
+    	//
+    	List<t_member> list = memberDao.memberlist(cond);
+    	if(list.size()==1)
+    	{	
+    	   // session.setAttribute("userInfo", list.get(0));	
+    		return "redirect:/";
+    	}
+    	else {
+    		return "redirect:/login";
+    	}
+    }
+    
+    @RequestMapping(path="/api/getPost2", method =  {RequestMethod.GET, RequestMethod.POST})
+    public String getPost2() {
+       return "sayHello";
+    }
+    
+    @PostMapping("/getPost")
+    public String getPost( String val)
+    {
+    	return "hello";
+    }
+    
+    
 }

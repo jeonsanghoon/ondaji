@@ -3,6 +3,7 @@
  */
 package com.mrc.db.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -22,7 +23,7 @@ import lombok.ToString;
 @Setter
 @Builder
 @ToString
-public class t_member {
+public class t_member implements Serializable {
 	private int member_code;
 	private String member_id;
 	private String member_name;

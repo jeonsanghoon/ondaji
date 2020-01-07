@@ -37,7 +37,7 @@ public class AuthProvider implements AuthenticationProvider {
 
 	private Authentication authenticate(String id, String pw) throws AuthenticationException {
 
-		List<t_member> list = GlobalMapper.MemberMapper.getMemberList(member_cond.builder().build());
+		List<t_member> list = GlobalMapper.MemberMapper.getMemberList(member_cond.builder().member_id(id).member_pw(pw).build());
 		t_member m = t_member.builder().build();
 		if (list.size() != 1) {
 
@@ -46,6 +46,7 @@ public class AuthProvider implements AuthenticationProvider {
 		} else
 			m = list.get(0);
 
+	
 		List<GrantedAuthority> authList = new ArrayList<>();
 		/**
 		 * Role 처리 필요, 일단 임의로 USER Role을 부여한다.

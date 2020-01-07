@@ -20,31 +20,38 @@
                 dark
                 flat
               >
-                <v-toolbar-title>Login form</v-toolbar-title>
+                <v-toolbar-title>로그인</v-toolbar-title>
                 <v-spacer />
                 </v-toolbar>
+                    <form action="/member/logindo" method="post">
               <v-card-text>
-                <v-form>
+            
                   <v-text-field
+                    v-model="member_id"
                     label="Login"
-                    name="login"
+                    id="member_id"
+                    name="member_id"
+                    
                     prepend-icon="person"
                     type="text"
                   />
 
                   <v-text-field
-                    id="password"
+                    v-model="member_pw"
+                    id="memer_pw"
                     label="Password"
-                    name="password"
+                    name="memer_pw"
                     prepend-icon="lock"
                     type="password"
                   />
-                </v-form>
+              
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary">Login</v-btn>
+                <v-btn color=primary class="mr-4" @click="login">로그인</v-btn>
+                <v-btn @click="formclear">초기화</v-btn>
               </v-card-actions>
+                </form>
             </v-card>
           </v-col>
         </v-row>
@@ -64,10 +71,21 @@ export default {
   data() {
     return{
      msg:"로그인페이지"
+     ,member_id:""
+     ,member_pw:""
     }
   },
   methods:{
-    
+    formclear:function(){
+      
+      this.member_id="";
+      this.member_pw="";
+    },login(){
+      axios.post('/member/dologin', {member_id: this.member_id,member_pw:this.member_pw}) .then(res => { console.log(res.data) })
+    }
+  },compute:{
+
+ 
   }
 }
 </script>
