@@ -3,8 +3,10 @@
  */
 package com.mrc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -27,6 +29,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private MemberService memberService;
+	@Autowired AuthProvider authProvider;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -42,27 +45,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                // 페이지 권한 설정
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/myinfo").hasRole("MEMBER")
-                .antMatchers("/**").permitAll()
-                .antMatchers("/member/**").permitAll()
-            .and() // 로그인 설정
-                                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .permitAll()
-            .and() // 로그아웃 설정
-            	.logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
-                .invalidateHttpSession(true)
-            .and()
-                // 403 예외처리 핸들링
-            	.exceptionHandling().accessDeniedPage("/user/denied");
-        
+       
+       http.csrf().disable();      // 개발 시 에만
+       
+       http.authorizeRequests()
+          .antMatchers("/user/**").access("ROLE_USER")            // 사용자 페이지
+          .antMatchers("/admin/**").access("ROLE_ADMIN")            // 관리자 페이지
+          .antMatchers("/login").permitAll()
+          .antMatchers(HttpMethod.POST, "/**").permitAll()
+          .antMatchers(HttpMethod.POST, "/member/**").permitAll()
+          .antMatchers("/**").authenticated();
+    
+       http.formLogin()
+          .loginPage("/login")
+          .defaultSuccessUrl("/home")
+          .usernameParameter("id")
+          .passwordParameter("password");
+       
+       http.logout()
+          .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+          .logoutSuccessUrl("/")
+          .invalidateHttpSession(true);
+       
+       http.authenticationProvider(authProvider);
     }
+    
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {

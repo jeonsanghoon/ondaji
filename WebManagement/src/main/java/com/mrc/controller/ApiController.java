@@ -6,6 +6,7 @@ package com.mrc.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mrc.db.dao.ApiDao;
@@ -56,7 +58,7 @@ public class ApiController {
 				//.member_id("mrc0700@gmail.com")
 				//.member_pw("1111")
 				.build());
-		
+	
 		
 		// return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 		return list;
@@ -82,7 +84,7 @@ public class ApiController {
 	
 	// 로그인
      
-    @RequestMapping(path="/member/dologin",headers="Accept=application/json", method =  {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/memvber/login", method = RequestMethod.POST) 
     public String dologin(@RequestBody member_cond cond) {
     	//
     	List<t_member> list = memberDao.memberlist(cond);
@@ -96,16 +98,46 @@ public class ApiController {
     	}
     }
     
-    @RequestMapping(path="/api/getPost2", method =  {RequestMethod.GET, RequestMethod.POST})
-    public String getPost2() {
-       return "sayHello";
-    }
-    
-    @PostMapping("/getPost")
+	
+    @PostMapping(path="/getPost")
     public String getPost( String val)
     {
-    	return "hello";
+    	return val;
     }
+    
+    
+    @ResponseBody
+    @PostMapping("/test2")
+    public String test2(@RequestBody HashMap<String, Object> map) {
+    
+    	return map.toString();
+    	// {name=kim, age=30} 출력
+    }
+    
+    @ResponseBody
+    @RequestMapping("/test1")
+    public String test1(@RequestBody HashMap<String, Object> map) {
+    
+    	return map.toString();
+    	// {name=kim, age=30} 출력
+    }
+    
+    @ResponseBody
+    @RequestMapping(value ="/memdata", method = RequestMethod.POST)
+    public String memdata(@RequestBody t_member member ) {
+    
+    	return member.toString();
+    	// {name=kim, age=30} 출력
+    }
+    
+    @ResponseBody
+    @PostMapping(value="/memdata2")
+    public t_member memdata2(@RequestBody t_member member) {
+    
+    	return member;
+    	// {name=kim, age=30} 출력
+    }
+    
     
     
 }
