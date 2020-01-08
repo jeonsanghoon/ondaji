@@ -51,6 +51,7 @@
                 <v-spacer />
                 <v-btn color=primary class="mr-4" @click="login">로그인</v-btn>
                 <v-btn @click="formclear">초기화</v-btn>
+                 <span th:text="${name}"></span><br/>
               </v-card-actions>
                 </form>
             </v-card>

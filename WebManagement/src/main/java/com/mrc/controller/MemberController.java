@@ -56,6 +56,9 @@ public class MemberController {
 		if (logout != null) {
 			model.addAttribute("msg", "You have been logged out successfully");
 		}
+		
+		model.addAttribute("name", "전상훈");
+
 		return "./pages/home/login";
 	}
 	
