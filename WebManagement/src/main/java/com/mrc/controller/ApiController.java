@@ -43,14 +43,14 @@ public class ApiController {
 		return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 	}
 
-	@GetMapping(path = "/helloWorld")
+	@GetMapping(path = "/api/helloWorld")
 	public String helloWorld() {
 		// return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 		return String.format("%s %s", apiDao.selectName(),
 				LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 	}
 
-	@GetMapping(path = "/memberlist")
+	@GetMapping(path = "/member/memberlist")
 	
 	public List<t_member> memberlist() {
 		List<t_member> list = memberDao.memberlist(member_cond.builder()
@@ -64,7 +64,7 @@ public class ApiController {
 		return list;
 	}
 
-	@GetMapping(path = "/saveMember")
+	@GetMapping(path = "/member/saveMember")
 	public String saveMember() {
 		/*임의 param start*/
 		List<t_member> list = new ArrayList();

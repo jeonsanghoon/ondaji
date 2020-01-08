@@ -40,8 +40,7 @@ public class MemberDao {
 		} catch (Exception ex) {
 			rtn = ex.getMessage();
 		}
-		if (rtn.equals(""))
-			rtn = "저장에 성공하였습니다.";
+	
 		return rtn;
 	}
 

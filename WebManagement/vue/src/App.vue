@@ -1,11 +1,12 @@
+
 <template>
-  <v-app id="inspire">
+  <v-app id="app">
     <v-navigation-drawer
       v-model="drawer"
       app
     >
       <v-list dense>
-        <v-list-item link>
+        <v-list-item  link to="/">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -13,12 +14,20 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link to="/member/about">
           <v-list-item-action>
             <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Contact</v-list-item-title>
+            <v-list-item-title>About</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+         <v-list-item link to="/member/login">
+          <v-list-item-action>
+            <v-icon>mdi-contact-mail</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>로그인</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -43,7 +52,7 @@
           justify="center"
         >
           <v-col class="text-center">
-         
+               <router-view/>
           </v-col>
         </v-row>
       </v-container>
@@ -64,6 +73,32 @@
     },
     data: () => ({
       drawer: null,
-    }),
+    }),method:()=>{
+        
+
+    },
   }
 </script>
+
+<style lang="scss">
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>

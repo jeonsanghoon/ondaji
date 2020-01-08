@@ -21,7 +21,7 @@ import lombok.Setter;
 public class MyAuthentication extends UsernamePasswordAuthenticationToken{
 	private static final long serialVersionUID = 1L;
 	
-	t_member member;
+	public t_member member;
 	
 	public MyAuthentication(String id, String pw, List<GrantedAuthority> authList, t_member member) {
 		super(id, pw, authList);

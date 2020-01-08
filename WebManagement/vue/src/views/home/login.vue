@@ -74,15 +74,22 @@ export const axios = ax
 
 
 export default {
+  
  beforeCreate () {
-   
+   this.drawer = false;
+
+    axios.post('/member/getmyinfo') .then(res => { console.log(res.data); })
  },
+  created() {
+   
+  },
   data() {
     return{
      msg:"로그인페이지"
      ,member_id:""
      ,member_pw:""
      ,param:""
+     ,drawer: false
     }
   },
   methods:{
@@ -91,8 +98,8 @@ export default {
       this.member_id="";
       this.member_pw="";
     },login(){
-      alert(this.$route.params);
-      axios.post('/member/dologin', {member_id: this.member_id,member_pw:this.member_pw}) .then(res => { console.log(res.data) })
+      
+      axios.post('/member/logindo', {member_id: this.member_id,member_pw:this.member_pw}) .then(res => { console.log(res.data) })
     }
   },compute:{
 

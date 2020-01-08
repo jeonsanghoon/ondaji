@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -52,19 +53,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           .antMatchers("/user/**").access("ROLE_USER")            // 사용자 페이지
           .antMatchers("/admin/**").access("ROLE_ADMIN")            // 관리자 페이지
           .antMatchers("/login").permitAll()
+          .antMatchers("/temp/**").permitAll()
+          .antMatchers("/member/**").permitAll()
+          .antMatchers(HttpMethod.POST,"/temp/**").permitAll()
           .antMatchers(HttpMethod.POST, "/**").permitAll()
           .antMatchers(HttpMethod.POST, "/member/**").permitAll()
           .antMatchers("/**").authenticated();
     
        http.formLogin()
-          .loginPage("/login")
-          .defaultSuccessUrl("/home")
-          .usernameParameter("id")
-          .passwordParameter("password");
+          .loginPage("/member/login")
+          .defaultSuccessUrl("/")
+          .usernameParameter("member_id")
+          .passwordParameter("member_pw");
        
        http.logout()
-          .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-          .logoutSuccessUrl("/")
+          .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+          .logoutSuccessUrl("/member/login?rtn=logout")
           .invalidateHttpSession(true);
        
        http.authenticationProvider(authProvider);
@@ -75,5 +79,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
         
+    }
+    
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+         return super.authenticationManagerBean();
     }
 }

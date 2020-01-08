@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+    <v-app>
     <v-app-bar
       app
       color="primary"
@@ -122,9 +122,10 @@ export const axios = ax
 import test from '@/assets/scripts/Common'
    
 export default {
-  el: '#app',
+  
   data() {
     return{
+      isNav:true,
       footerProps: {'items-per-page-options': [5, 10, 15, 30, 50, 100]},
       pagination: {
         sortBy: 'member_name'
