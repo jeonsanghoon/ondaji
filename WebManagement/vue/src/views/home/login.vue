@@ -21,17 +21,17 @@
 									<v-spacer />
 									<v-btn color=primary class="mr-4" @click="login">로그인</v-btn>
 									<v-btn @click="formclear">초기화</v-btn>
+									<v-btn @click="getCompany">회사명</v-btn>
 								</v-card-actions>
-							
+
 							</form>
 						</v-card>
 					</v-col>
-				</v-row>
-				<v-row align="center" justify="center">
 					<v-col cols="12" sm="8" md="4">
-							<v-textarea filled auto-grow label="리턴 데이터" rows="4" row-height="30" shaped v-model="messagedata"></v-textarea>
+						<v-textarea filled auto-grow label="리턴 데이터" rows="4" row-height="30"  shaped v-model="messagedata"></v-textarea>
 					</v-col>
 				</v-row>
+				
 			</v-container>
 		</v-content>
 	</v-app>
@@ -46,29 +46,6 @@
 
 
 	export default {
-
-		beforeCreate() {
-			this.drawer = false;
-
-			axios.post('/member/getmyinfo').then(res => { 
-				// eslint-disable-next-line no-debugger
-				debugger;
-				if (!(res === null || res.data === null)) {
-					this.loginmessage = res.data.member_name + "님이 로그인 되어있습니다." 
-					this.type = "success"
-					this.value = true;
-					this.messagedata = JSON.stringify(res.data);
-					//this.$router.push('/') ;
-				}
-				else{
-					this.messagedata="";
-				}
-					
-			})
-		},
-		created() {
-
-		},
 		data() {
 			return {
 				msg: "로그인페이지"
@@ -78,9 +55,37 @@
 				, type: "error"
 				, value: false
 				, loginmessage: "로그인에 성공하였습니다."
-				,messagedata:""
+				, messagedata:""
+				, isShowBar: false
 			}
 		},
+		beforeCreate() {
+			this.drawer = false;
+
+			axios.post('/member/getmyinfo').then(res => { 
+			
+				// eslint-disable-next-line no-debugger
+				debugger;
+				if (!(res === null || res.data === null || res.data === "" || res.data === undefined)) {
+					this.loginmessage = res.data.member_name + "님이 로그인 되어있습니다." 
+					this.type = "success"
+					this.value = true;
+					this.messagedata = JSON.stringify(res.data);
+					//this.$router.push('/') ;
+				}
+				else{
+					this.messagedata = "";
+					this.loginmessage = "";
+					
+					this.value = false;
+					this.messagedata = JSON.stringify(res.data);
+				}
+
+				this.$emit("fnIsShowBar",this.isShowBar);
+					
+			})
+		},
+		created() {},
 		methods: {
 			formclear: function () {
 
@@ -110,6 +115,12 @@
 					}
 
 				})
+			},
+			getCompany(){
+
+				axios.post('/comp/getCompName').then(res => { 
+					alert(res.data);
+				});
 			}
 		}, compute: {
 

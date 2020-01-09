@@ -74,6 +74,14 @@ public class MemberController {
 		}
 		return (t_member) session.getAttribute("userInfo");
 	}
+	
+	@ResponseBody
+	@PostMapping("/comp/getCompName")
+	public String getCompName() {
+		
+		return "알트소프트";
+	}
+
 
 	// @Autowired
 	// private MemberDao memberDao;
