@@ -4,6 +4,7 @@
     <v-navigation-drawer
       v-model="drawer"
       app
+      v-if=isShowBar
     >
       <v-list dense>
         <v-list-item  link to="/">
@@ -37,6 +38,7 @@
       app
       color="indigo"
       dark
+      v-if=isShowBar
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Application</v-toolbar-title>
@@ -60,6 +62,7 @@
     <v-footer
       color="indigo"
       app
+       v-if=isShowBar
     >
       <span class="white--text">&copy; 2019</span>
     </v-footer>
@@ -73,10 +76,12 @@
     },
     data: () => ({
       drawer: null,
-    }),method:()=>{
-        
-
-    },
+      isShowBar: true
+     }),method:()=>({
+        fnIsShowBar:function(bShow) {
+          this.isShowBar = bShow;
+      }        
+    }),
   }
 </script>
 
