@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.mrc;
+package com.mrc.db.configuration;
 
 import java.util.ArrayList;
 import java.util.List;

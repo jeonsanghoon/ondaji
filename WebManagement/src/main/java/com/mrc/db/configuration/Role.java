@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.mrc;
+package com.mrc.db.configuration;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
