@@ -40,10 +40,11 @@
 
 <script>
 
+
 	import ax from 'axios';
-	export const axios = ax
+	export const axios = ax;
 
-
+	import {BaseCommon} from '../../assets/scripts/Common';
 
 	export default {
 		data() {
@@ -61,7 +62,13 @@
 		},
 		beforeCreate() {
 			this.drawer = false;
+			BaseCommon.restful.Call('/member/getmyinfo',null).then(res=>{
 
+				console.log(res);
+			});
+			
+
+			alert(BaseCommon.getData());
 			axios.post('/member/getmyinfo').then(res => { 
 			
 				// eslint-disable-next-line no-debugger
