@@ -119,7 +119,7 @@
 <script>
 import ax from 'axios';
 export const axios = ax
-import test from '@/assets/scripts/Common'
+import {BaseCommon} from '../../assets/scripts/Common';
    
 export default {
   
@@ -159,20 +159,18 @@ export default {
   },
   methods:{
     btnClick:function(event){
-
-     axios.get('/member/memberlist')
+    BaseCommon.restful.Call('/member/memberlist',null,"get")
      .then((response) => {
        // JSON responses are automatically parsed.
        console.log( response);
-       console.log( response.data);
-       this.memberlist = response.data
+       
+       this.memberlist = response;
 
      })
      .catch(e => {
       this.errors.push(e)
      });
-      test.foo();
-      alert(test.msg);
+   
       if(event){
         alert(event.target.tagName);
       }

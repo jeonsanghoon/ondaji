@@ -119,7 +119,7 @@
 <script>
 import ax from 'axios';
 export const axios = ax
-import test from '@/assets/scripts/Common'
+
    
 export default {
   el: '#app',
@@ -170,8 +170,7 @@ export default {
      .catch(e => {
       this.errors.push(e)
      });
-      test.foo();
-      alert(test.msg);
+
       if(event){
         alert(event.target.tagName);
       }
