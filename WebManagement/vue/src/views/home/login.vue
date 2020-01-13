@@ -46,6 +46,7 @@
 
 	import {BaseCommon} from '../../assets/scripts/Common';
 
+
 	export default {
 		data() {
 			return {
@@ -61,23 +62,18 @@
 			}
 		},
 		beforeCreate() {
-			this.drawer = false;
-			BaseCommon.restful.Call('/member/getmyinfo',null).then(res=>{
-
-				console.log(res);
-			});
+		
+	
 			
-
-			alert(BaseCommon.getData());
-			axios.post('/member/getmyinfo').then(res => { 
+			BaseCommon.restful.Call('/member/getmyinfo').then(res => { 
 			
 				// eslint-disable-next-line no-debugger
 				debugger;
-				if (!(res === null || res.data === null || res.data === "" || res.data === undefined)) {
-					this.loginmessage = res.data.member_name + "님이 로그인 되어있습니다." 
+				if (!(res === null )) {
+					this.loginmessage = res.member_name + "님이 로그인 되어있습니다." 
 					this.type = "success"
 					this.value = true;
-					this.messagedata = JSON.stringify(res.data);
+					this.messagedata = JSON.stringify(res);
 					//this.$router.push('/') ;
 				}
 				else{
@@ -85,14 +81,13 @@
 					this.loginmessage = "";
 					
 					this.value = false;
-					this.messagedata = JSON.stringify(res.data);
+					this.messagedata = JSON.stringify(res);
 				}
-
-				this.$emit("fnIsShowBar",this.isShowBar);
+				
+				
 					
 			})
 		},
-		created() {},
 		methods: {
 			formclear: function () {
 
@@ -100,10 +95,11 @@
 				this.member_pw = "";
 			}, login() {
 
-				axios.post('/member/logindo', { member_id: this.member_id, member_pw: this.member_pw }).then(res => {
+				BaseCommon.restful.Call('/member/logindo', { member_id: this.member_id, member_pw: this.member_pw }).then(res => {
 					// eslint-disable-next-line no-debugger
 					debugger;
-					if (res === null || res.data === null || res.data.member === undefined || res.data.member === null) {
+						alert(res);
+					if (res === null || res.member === undefined || res.member === null) {
 						this.value = true;
 						this.loginmessage = "로그인정보가 잘못되었습니다. \n다시 입력하세요"
 						this.type = "warning"
@@ -111,11 +107,11 @@
 
 					}
 					else {
-						this.loginmessage = res.data.member.member_name + "님이 로그인에 성공하였습니다."
+						this.loginmessage = res.member.member_name + "님이 로그인에 성공하였습니다."
 						this.type = "success"
 						this.value = true;
 
-						this.messagedata = JSON.stringify(res.data);
+						this.messagedata = JSON.stringify(res);
 
 						//this.$router.push('/') ;
 
@@ -125,12 +121,10 @@
 			},
 			getCompany(){
 
-				axios.post('/comp/getCompName').then(res => { 
+				BaseCommon.restful.Call('/comp/getCompName').then(res => { 
 					alert(res.data);
 				});
 			}
-		}, compute: {
-
 		}
 	}
 </script>

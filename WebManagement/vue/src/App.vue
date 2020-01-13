@@ -1,48 +1,7 @@
 
 <template>
   <v-app id="app">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      v-if=isShowBar
-    >
-      <v-list dense>
-        <v-list-item  link to="/">
-          <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="/member/about">
-          <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>About</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-         <v-list-item link to="/member/login">
-          <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>로그인</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-app-bar
-      app
-      color="indigo"
-      dark
-      v-if=isShowBar
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-app-bar>
+   
 
     <v-content>
       <v-container
@@ -54,6 +13,7 @@
           justify="center"
         >
           <v-col class="text-center">
+      
                <router-view/>
           </v-col>
         </v-row>
@@ -70,18 +30,28 @@
 </template>
 
 <script>
+import store from "./store";
   export default {
     props: {
       source: String,
+      isShowBar:String
     },
     data: () => ({
-      drawer: null,
-      isShowBar: true
-     }),method:()=>({
-        fnIsShowBar:function(bShow) {
-          this.isShowBar = bShow;
-      }        
+     
+     
+     })
+    ,
+	created(){
+     console.log("store from $store", this.$store);
+    console.log("store from store: ", store);
+   
+  }
+     ,method:()=>({
+          
     }),
+     computed: {
+     
+     }
   }
 </script>
 

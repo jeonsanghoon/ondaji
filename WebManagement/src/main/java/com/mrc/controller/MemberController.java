@@ -100,7 +100,8 @@ public class MemberController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
+		session.setAttribute("userInfo","");
 		// session.removeAttribute("userInfo");
-		return "redirect:/login";
+		return "";
 	}
 }
