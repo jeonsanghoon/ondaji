@@ -3,7 +3,7 @@ import App from '@/App.vue'
 import vuetify from '@/plugins/vuetify';
 import router from '@/router'
 //store.js를 불러와
-import store from './store'
+import store from '@/store/store'
 
 
 

@@ -90,9 +90,25 @@ export default {
            this.isLogin = false;
             this.myinfodisplay= res.member_name + " 님";
          } else this.isLogin =true;
+         this.$store.dispatch('baseStore/setMemberInfo',res);
+         console.lo
 
       });
+    }, mounted() {
+        this.$store.watch(()=>{
+        
+        this.isShowBar = this.$store.getters['baseStore/getIsShowBar'];        
+        let member = this.$store.getters['baseStore/getMemberInfo']
+        console.log("member");
+        console.log(member);
+        if(member!==null)  {
+          this.myinfodisplay= member.member_name + " 님";
+        }else{
+          this.myinfodisplay= "";
+        }
+      })
     },methods:{
+     
       myMenuClick:function(item)
       {
         if(item.url ==="-1")
