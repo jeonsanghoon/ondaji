@@ -7,8 +7,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
-import com.mrc.AppProperties;
-
 
 
 /**
@@ -22,7 +20,7 @@ public class Global {
 	public static SecurityInfo SecurityInfo;
 	public static DataInfo DataInfo;
 	public static FileInfo FileInfo;
-	public static AppProperties AppProperties;
+	
 	
 	@PostConstruct
 	private void initialize() {
@@ -30,6 +28,6 @@ public class Global {
 		SecurityInfo = new SecurityInfo();
 		DataInfo = new DataInfo();
 		FileInfo = new FileInfo();
-		AppProperties = new AppProperties();
+	
 	}
 }
