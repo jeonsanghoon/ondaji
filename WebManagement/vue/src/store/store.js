@@ -8,7 +8,7 @@ Vue.use(Vuex)
 const baseStore = {
     namespaced: true,
     state: {
-        isShowBar : true,
+        isShowBar : false,
         isLoading : false,
         memberInfo:  null
     },

@@ -25,7 +25,7 @@
         </v-list-item>
          <v-list-item link to="/member/login" v-if=isLogin>
           <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
+            <v-icon>mdi-account</v-icon>
           </v-list-item-action>
           <v-list-item-content >
             <v-list-item-title>로그인</v-list-item-title>
@@ -89,22 +89,28 @@ export default {
          if(res!=null) {
            this.isLogin = false;
             this.myinfodisplay= res.member_name + " 님";
-         } else this.isLogin =true;
-         this.$store.dispatch('baseStore/setMemberInfo',res);
-         console.lo
-
+            this.items[1].title = "로그아웃";
+         } else {
+           this.isLogin =true;
+           this.items[1].title = "로그인";
+         }
+         BaseCommon.MemberInfo.setMember(res);
       });
     }, mounted() {
         this.$store.watch(()=>{
         
-        this.isShowBar = this.$store.getters['baseStore/getIsShowBar'];        
-        let member = this.$store.getters['baseStore/getMemberInfo']
-        console.log("member");
-        console.log(member);
+        this.isShowBar = BaseCommon.SettingInfo.getIsShowBar();        
+        let member =  BaseCommon.MemberInfo.getMember();
+        
+        member = (member === undefined) ? null : member;
         if(member!==null)  {
           this.myinfodisplay= member.member_name + " 님";
+          this.items[1].title = "로그아웃";
+          this.isLogin = false;
         }else{
           this.myinfodisplay= "";
+          this.items[1].title = "로그인";
+          this.isLogin = true;
         }
       })
     },methods:{

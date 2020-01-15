@@ -44,16 +44,18 @@ const routes = [
       console.log(next);
       this.$store.dispatch('baseStore/setIsShowBar',false);
     },
-    
     component: () => import(/* webpackChunkName: "about" */ '../views/home/login.vue' )
   },
   {
     path: '/temp/temp01',
     name: '템플릿',
-    
     component: () => import(/* webpackChunkName: "about" */ '../views/temp/templeate01.vue' )
-    
-
+  }
+  ,
+  {
+    path: '/temp/temp02',
+    name: '템플릿',
+    component: () => import(/* webpackChunkName: "about" */ '../views/temp/temp02.vue' )
   }
 ]
 

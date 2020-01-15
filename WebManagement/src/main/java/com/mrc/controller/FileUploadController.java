@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.mrc.framework.Global;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,34 +38,37 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @RestController
-@RequestMapping("/file")
 @Slf4j
 public class FileUploadController {
-	private static final String EXTERNAL_FILE_PATH = "C:/fileDownloadExample/";
+	private static final String EXTERNAL_FILE_PATH = "C:/source/files/";
     
 	@PostMapping("/upload")
-	public List<UploadFiles> upload(@RequestParam String dirPath, @RequestParam MultipartFile[] files) throws IOException {
+	public List<UploadFiles> upload(@RequestParam MultipartFile[] file) throws IOException {
 		List<UploadFiles> list = new ArrayList<UploadFiles>();
-		 
-		for (MultipartFile file : files) {
+		String dirPath = "";
+		dirPath = Global.DataInfo.isNullEmpty(dirPath) ? "C:\\Source\\files\\"  : dirPath;
+		
+		for (MultipartFile filedata : file) {
 			
-			String filepath = dirPath + UUID.randomUUID().toString();
+			String extention = "." + FilenameUtils.getExtension(filedata.getOriginalFilename());
+			
+			String filepath = dirPath + UUID.randomUUID().toString() + extention;
+			log.debug("extentioin >>>>>>>>> " + extention);
 			File tmp = new File(filepath);
 			try {
-				FileUtils.copyInputStreamToFile(file.getInputStream(), tmp);
+				FileUtils.copyInputStreamToFile(filedata.getInputStream(), tmp);
 			} catch (IOException e) {
 				log.error("Error while copying.", e);
 				throw e;
 			}
 			UploadFiles uploadData = new UploadFiles();
 			
-			uploadData.setFileName(file.getOriginalFilename());
-			uploadData.setFileSize(file.getSize());
-			uploadData.setFileContentType(file.getContentType());
-			uploadData.setAttachmentUrl("http://localhost:8080/files/" + filepath);
+			uploadData.setFileName(filedata.getOriginalFilename());
+			uploadData.setFileSize(filedata.getSize());
+			uploadData.setFileContentType(filedata.getContentType());
+			uploadData.setAttachmentUrl(filepath);
+			list.add(uploadData);
 		}
-		
-		
 		return list;
 	}
 	@RequestMapping("/download/{fileName:.+}")
@@ -79,7 +85,8 @@ public class FileUploadController {
 				mimeType = "application/octet-stream";
 			}
 
-			response.setContentType(mimeType);
+			//response.setContentType(mimeType);/*이미지 보기로 이동함*/
+			response.setContentType("application/unknown");/*무조건 다운로드*/
 
 			/**
 			 * In a regular HTTP response, the Content-Disposition response header is a
