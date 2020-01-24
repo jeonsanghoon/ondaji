@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
-import com.mrc.db.dto.t_member;
+import com.mrc.db.dto.member.t_member;
 
 import lombok.Getter;
 import lombok.Setter;

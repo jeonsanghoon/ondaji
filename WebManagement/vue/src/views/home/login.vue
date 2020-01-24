@@ -33,11 +33,13 @@
                 type="password"
                 v-on:keyup.enter="login"
               />
+                <Vuetify-textbox v-model="reqData"></Vuetify-textbox>
             </v-card-text>
             <v-card-actions>
               <v-spacer />
               <v-btn color="primary" class="mr-4" @click="login">로그인</v-btn>
               <v-btn @click="formclear">초기화</v-btn>
+            
             </v-card-actions>
           </form>
         </v-card>
@@ -52,7 +54,9 @@ export const axios = ax
 
 import { BaseCommon } from '@/assets/scripts/Common'
 
+
 export default {
+  
   data () {
     return {
       msg: '로그인페이지',
@@ -63,7 +67,8 @@ export default {
       value: false,
       loginmessage: '로그인에 성공하였습니다.',
       messagedata: '',
-      isShowBar: false
+      isShowBar: false,
+      reqData :{ label:'라벨',id:'txtTest', value:"123456", icon:"home",color:"#f45525" }
     }
   },
   mounted () {

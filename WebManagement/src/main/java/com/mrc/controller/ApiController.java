@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mrc.db.dao.ApiDao;
+import com.mrc.db.dao.IMemberDao;
 import com.mrc.db.dao.MemberDao;
-import com.mrc.db.dto.member_cond;
-import com.mrc.db.dto.t_member;
+import com.mrc.db.dto.common.ResultData;
+import com.mrc.db.dto.member.member_cond;
+import com.mrc.db.dto.member.t_member;
 import com.mrc.framework.Global;
 
 /**
@@ -36,7 +38,7 @@ public class ApiController {
 	private ApiDao apiDao;
 
 	@Autowired
-	private MemberDao memberDao;
+	private IMemberDao memberDao;
 
 	@GetMapping(path = "/localtime")
 	public String localtime() {
@@ -53,7 +55,7 @@ public class ApiController {
 	@GetMapping(path = "/member/memberlist")
 	
 	public List<t_member> memberlist() {
-		List<t_member> list = memberDao.memberlist(member_cond.builder()
+		List<t_member> list = memberDao.GetList(member_cond.builder()
 				//.member_code(1)
 				//.member_id("mrc0700@gmail.com")
 				//.member_pw("1111")
@@ -65,7 +67,7 @@ public class ApiController {
 	}
 
 	@GetMapping(path = "/member/saveMember")
-	public String saveMember() {
+	public ResultData saveMember() {
 		/*임의 param start*/
 		List<t_member> list = new ArrayList();
 		
@@ -78,7 +80,7 @@ public class ApiController {
 				.update_code(0).build());
 			}
 		/*임의 param end*/
-		String rtn = memberDao.memberSave(list);
+		ResultData rtn = memberDao.SaveList(list);
 		return rtn;
 	}
 	
@@ -87,7 +89,7 @@ public class ApiController {
 	@RequestMapping(value="/memvber/login", method = RequestMethod.POST) 
     public String dologin(@RequestBody member_cond cond) {
     	//
-    	List<t_member> list = memberDao.memberlist(cond);
+    	List<t_member> list = memberDao.GetList(cond);
     	if(list.size()==1)
     	{	
     	   // session.setAttribute("userInfo", list.get(0));	

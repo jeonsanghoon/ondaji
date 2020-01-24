@@ -6,13 +6,15 @@ import router from '@/router'
 import store from '@/store/store'
 
 
+// Components
+import './components'
 
 Vue.config.productionTip = false
 Vue.config.devtools = true
 new Vue({
-  vuetify,
-  router,
-  store,
-  render: h => h(App)
-  
+    vuetify,
+    router,
+    store,
+    render: h => h(App)
+
 }).$mount('#app')
