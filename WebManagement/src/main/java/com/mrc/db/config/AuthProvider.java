@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.mrc.db.configuration;
+package com.mrc.db.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 
 import com.mrc.db.dao.IMemberDao;
 import com.mrc.db.dao.MemberDao;
-import com.mrc.db.dto.member.member_cond;
-import com.mrc.db.dto.member.t_member;
+import com.mrc.db.dto.member_cond;
+import com.mrc.db.dto.t_member;
 
 import lombok.extern.slf4j.Slf4j;
 

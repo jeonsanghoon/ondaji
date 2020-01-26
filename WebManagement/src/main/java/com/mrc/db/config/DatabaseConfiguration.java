@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.mrc.db.configuration;
+package com.mrc.db.config;
 
 import javax.sql.DataSource;
 

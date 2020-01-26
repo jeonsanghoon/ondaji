@@ -1,4 +1,4 @@
-package com.mrc.db.configuration;
+package com.mrc.db.config;
 import java.io.IOException;
 
 import javax.servlet.Filter;

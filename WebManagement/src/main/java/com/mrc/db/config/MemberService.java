@@ -1,4 +1,4 @@
-package com.mrc.db.configuration;
+package com.mrc.db.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mrc.db.dao.IMemberDao;
 import com.mrc.db.dao.MemberDao;
+import com.mrc.db.dto.member_cond;
+import com.mrc.db.dto.t_member;
 import com.mrc.db.dto.common.ResultData;
-import com.mrc.db.dto.member.member_cond;
-import com.mrc.db.dto.member.t_member;
 
 import lombok.AllArgsConstructor;
 
@@ -27,8 +27,10 @@ public class MemberService implements UserDetailsService {
 
 	@Transactional
 	public ResultData joinUser(t_member member) {
+		List<t_member> list = new ArrayList<t_member>();
+		list.add(member);
+		ResultData rtn = memberRepository.SaveList(list);
 		
-		ResultData rtn = memberRepository.Save(member);
 		return rtn;
 	}
 

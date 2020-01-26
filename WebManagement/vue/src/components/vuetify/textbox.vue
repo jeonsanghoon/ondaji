@@ -1,7 +1,6 @@
 <template>
     <div>
     <v-text-field
-            
             autofocus
             type="text"
             ref="value"

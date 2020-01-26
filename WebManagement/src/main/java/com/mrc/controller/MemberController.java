@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mrc.db.dao.IMemberDao;
 import com.mrc.db.dao.MemberDao;
 import com.mrc.db.dto.loginInfo;
-import com.mrc.db.dto.member.member_cond;
-import com.mrc.db.dto.member.t_member;
+import com.mrc.db.dto.member_cond;
+import com.mrc.db.dto.t_member;
 
 /**
  * @author jsh
@@ -50,18 +50,16 @@ public class MemberController {
 
 			session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
 					SecurityContextHolder.getContext());
-			List<t_member> list = memberDao.GetList(cond);
+			t_member rtn = memberDao.GetData(cond);
 
 			loginInfo logininfo = new loginInfo();
 
-			if (list.size() == 1) {
-				session.setAttribute("userInfo", list.get(0));
-				logininfo.setMember(list.get(0));
-				return logininfo;
+			if (rtn == null) return null;
+			
+			session.setAttribute("userInfo", rtn);
+			logininfo.setMember(rtn);
+			return logininfo;
 
-			} else
-
-				return null;
 		} catch (Exception ex) {
 			return null;
 		}

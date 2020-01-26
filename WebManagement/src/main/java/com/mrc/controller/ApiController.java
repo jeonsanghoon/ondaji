@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mrc.db.dao.ApiDao;
 import com.mrc.db.dao.IMemberDao;
 import com.mrc.db.dao.MemberDao;
+import com.mrc.db.dto.member_cond;
+import com.mrc.db.dto.t_member;
 import com.mrc.db.dto.common.ResultData;
-import com.mrc.db.dto.member.member_cond;
-import com.mrc.db.dto.member.t_member;
 import com.mrc.framework.Global;
 
 /**
@@ -38,7 +38,7 @@ public class ApiController {
 	private ApiDao apiDao;
 
 	@Autowired
-	private IMemberDao memberDao;
+	private IMemberDao<member_cond, t_member> memberDao;
 
 	@GetMapping(path = "/localtime")
 	public String localtime() {
@@ -86,7 +86,7 @@ public class ApiController {
 	
 	// 로그인
      
-	@RequestMapping(value="/memvber/login", method = RequestMethod.POST) 
+	@RequestMapping(value="/member/login", method = RequestMethod.POST) 
     public String dologin(@RequestBody member_cond cond) {
     	//
     	List<t_member> list = memberDao.GetList(cond);
@@ -96,7 +96,7 @@ public class ApiController {
     		return "redirect:/";
     	}
     	else {
-    		return "redirect:/login";
+    		return "redirect:/member/login";
     	}
     }
     

@@ -119,7 +119,7 @@
 <script>
 import ax from 'axios';
 export const axios = ax
-import {BaseCommon} from '../../assets/scripts/Common';
+import {BaseCommon} from '@/assets/scripts/Common';
    
 export default {
   

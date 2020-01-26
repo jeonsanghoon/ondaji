@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.mrc.db.configuration;
+package com.mrc.db.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
