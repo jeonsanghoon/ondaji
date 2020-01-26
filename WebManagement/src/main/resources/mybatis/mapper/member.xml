@@ -9,16 +9,19 @@
 		from t_member
 		<where>
 			<if test="member_code != null ">
-				and member_code LIKE ${member_code}
+				and member_code LIKE #{member_code}
 			</if>
 			<if test="member_id != null and member_id != '' ">
-				and member_id = '${member_id}'
+				and member_id = #{member_id}
 			</if>
 			<if test="member_pw != null and member_pw != '' ">
-				and member_pw = '${member_pw}'
+				and member_pw = #{member_pw}
 			</if>
 			<if test="member_name != null and member_name != '' ">
 				and member_name LIKE CONCAT('%', #{member_name}, '%')
+			</if>
+			<if test="hide != null  ">
+				and hide = #{hide}
 			</if>
 		</where>
 	</select>

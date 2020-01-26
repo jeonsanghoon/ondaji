@@ -16,6 +16,8 @@ import com.mrc.db.dto.t_member;
  */
 @Service
 public interface MemberMapper {
-	void memberSave(t_member list);
+	void memberSave(t_member data);
 	List<t_member> getMemberList(member_cond Cond);
+	void remove(t_member data);
+	void update(t_member data);
 }
