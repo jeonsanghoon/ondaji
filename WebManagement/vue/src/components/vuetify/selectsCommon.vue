@@ -3,7 +3,7 @@
         <v-select
             item-text="name"
             item-value="code"
-            :items="value.items"
+            :items="itemlist"
             v-model="defaultSelected"
             label="Standard"
             dense
@@ -14,21 +14,25 @@
 import { BaseCommon } from '@/assets/scripts/Common'
 
 export default {
-    props:['value'],
+    props:['Cond'],
     data: () => ({
          defaultSelected: {
             code: "",
             name: "-선택-"
         }
-        ,propsData : this.value
+        
         ,itemlist:[{code:"",name:"-선택-",bSelect:true}]
+      
     }),
-    created:()=> {
+    created() {
+        // eslint-disable-next-line no-debugger
+        debugger;
+       
         BaseCommon.restful
-        .Call('/common/getCommonList',   this.propsData.Cond)
+        .Call('/common/getSelectItemList',this.$options.propsData.Cond)
         .then(res => {
           // eslint-disable-next-line no-debugger
-            this.itemlist = res.data;
+            this.itemlist = res;
         })
 
     },

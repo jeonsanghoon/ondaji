@@ -44,7 +44,7 @@ const routes = [
       console.log(next);
       this.$store.dispatch('baseStore/setIsShowBar',false);
     },
-    component: () => import(/* webpackChunkName: "about" */ '../views/home/login.vue' )
+    component: () => import(/* webpackChunkName: "about" */ '../views/member/login.vue' )
   },
   {
     path: '/temp/temp01',

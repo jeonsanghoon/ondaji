@@ -17,6 +17,9 @@
       </div>
     </vue-dropzone>
     <v-btn @click="fileDownload">파일다운로드</v-btn>
+
+      <Vuetify-textbox :options="inputOptions" :value="formData.inputValue"></Vuetify-textbox>
+      <Vuetify-selectsCommon :Cond="selectCond"></Vuetify-selectsCommon>
   </div>
             </v-col>
         </v-row>
@@ -46,7 +49,12 @@ export default {
                 console.log(response);
             })
         }
-      }
+      },
+      inputOptions :{ label:'라벨', value:"123456", icon:"home",color:"#f45525" }
+      ,formData : {
+        inputValue:"테스트당" 
+      },
+      selectCond:{main_code:"A001",hide:false}
     };
   },
  methods:{

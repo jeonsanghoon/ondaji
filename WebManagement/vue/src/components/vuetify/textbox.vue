@@ -5,12 +5,12 @@
             type="text"
             ref="value"
             :rules="rules.required"
-            v-bind:color="value.color"
-            v-bind:prepend-icon="value.icon"
-            v-bind:label="value.label"
-            v-bind:id="value.id"
-            v-bind:name="value.id"
-            v-bind:value="value.value"
+            v-bind:color="options.color"
+            v-bind:prepend-icon="options.icon"
+            v-bind:label="options.label"
+            v-bind:id="options.id"
+            v-bind:name="options.id"
+            v-bind:value="value"
             v-on:input="$emit('input', $event.target.value)"
           ></v-text-field>
     </div>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  props:['value'],
+  props:['options','value'],
   data: () => ({
     rules: {
           required: [val => (val || '').length > 0 || '필수입력입니다.']
