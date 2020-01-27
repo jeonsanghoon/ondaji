@@ -3,8 +3,8 @@
 
 <mapper namespace="com.mrc.db.mapper.CommonMapper">
 	<select id="getList"
-		parameterType="com.mrc.db.dto.common_cond"
-		resultType="com.mrc.db.dto.t_common">
+		parameterType="com.mrc.db.dto.common.common_cond"
+		resultType="com.mrc.db.dto.common.t_common">
 		select *
 		from t_common
 		<where>
@@ -14,8 +14,28 @@
 			<if test="main_code != null and main_code != '' ">
 				and main_code = #{main_code}
 			</if>
-			<if test="order_seq != null and order_seq != '' ">
-				and order_seq = #{order_seq}
+			<if test="name != null and name != '' ">
+				and name LIKE CONCAT('%', #{name}, '%')
+			</if>
+			<if test="addCond != null and addCond != '' ">
+				${addCond}
+			</if>
+			<if test="hide != null  ">
+				and hide = #{hide}
+			</if>
+		</where>
+	</select>
+	<select id="getSelectItemList"
+		parameterType="com.mrc.db.dto.common.common_cond"
+		resultType="com.mrc.db.dto.common.SelectItem">
+		select *
+		from t_common
+		<where>
+			<if test="code != null ">
+				and code LIKE #{code}
+			</if>
+			<if test="main_code != null and main_code != '' ">
+				and main_code = #{main_code}
 			</if>
 			<if test="name != null and name != '' ">
 				and name LIKE CONCAT('%', #{name}, '%')
@@ -29,25 +49,30 @@
 		</where>
 	</select>
 
-	<insert id="commonSave" parameterType="com.mrc.db.dto.t_common" >
+	<insert id="commonSave"
+		parameterType="com.mrc.db.dto.common.t_common">
 		INSERT INTO t_common
-		(main_code, name, order_seq, ref_data1, ref_data2, ref_data3, ref_data4, hide, insert_code, insert_date, update_code, update_date)
-		values(  #{main_code}, #{name}, #{order_seq}, #{ref_data1}, #{ref_data2}, #{ref_data3}, #{ref_data4}, #{hide},  #{update_code},  #{update_date}, #{update_code}, localtime())
-		 ON DUPLICATE KEY UPDATE 
-		    main_code   = #{main_code}
-		  , order_seq   = #{order_seq}
-		  , ref_data1   = #{ref_data1}
-		  , ref_data2   = #{ref_data2}
-		  , ref_data3   = #{ref_data3}
-		  , ref_data4   = #{ref_data4}
-		  , hide        = #{hide}
-		  , update_code = #{update_code}
-		  , update_date = localtime();
+		(main_code, name, order_seq, ref_data1, ref_data2, ref_data3,
+		ref_data4, hide, insert_code, insert_date, update_code, update_date)
+		values( #{main_code}, #{name}, #{order_seq}, #{ref_data1},
+		#{ref_data2}, #{ref_data3}, #{ref_data4}, #{hide}, #{update_code},
+		#{update_date}, #{update_code}, localtime())
+		ON DUPLICATE KEY UPDATE
+		main_code = #{main_code}
+		, order_seq = #{order_seq}
+		, ref_data1 = #{ref_data1}
+		, ref_data2 = #{ref_data2}
+		, ref_data3 = #{ref_data3}
+		, ref_data4 = #{ref_data4}
+		, hide = #{hide}
+		, update_code = #{update_code}
+		, update_date = localtime();
 	</insert>
 
 
 
-	<delete id="remove" parameterType="com.mrc.db.dto.t_common">
+	<delete id="remove"
+		parameterType="com.mrc.db.dto.common.t_common">
 		delete from t_common
 		<where>
 			<if test="code != null ">
@@ -57,22 +82,23 @@
 				and main_code = #{main_code}
 			</if>
 		</where>
-   </delete>
+	</delete>
 
 
 
-	<update id="update" parameterType="com.mrc.db.dto.t_common">
+	<update id="update"
+		parameterType="com.mrc.db.dto.common.t_common">
 
 		update T_common
-         set main_code   = #{main_code}
-		  , order_seq   = #{order_seq}
-		  , ref_data1   = #{ref_data1}
-		  , ref_data2   = #{ref_data2}
-		  , ref_data3   = #{ref_data3}
-		  , ref_data4   = #{ref_data4}
-		  , hide        = #{hide}
-		  , update_code = #{update_code}
-		  , update_date = localtime();
+		set main_code = #{main_code}
+		, order_seq = #{order_seq}
+		, ref_data1 = #{ref_data1}
+		, ref_data2 = #{ref_data2}
+		, ref_data3 = #{ref_data3}
+		, ref_data4 = #{ref_data4}
+		, hide = #{hide}
+		, update_code = #{update_code}
+		, update_date = localtime();
 
 		where code = #{code}
 

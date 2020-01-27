@@ -3,8 +3,6 @@
  */
 package com.mrc.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mrc.db.dao.IMemberDao;
-import com.mrc.db.dao.MemberDao;
 import com.mrc.db.dto.loginInfo;
 import com.mrc.db.dto.member_cond;
 import com.mrc.db.dto.t_member;
