@@ -5,16 +5,19 @@
             item-value="code"
             :items="itemlist"
             v-model="defaultSelected"
-            label="Standard"
+            :label="options.label"
+            :value="options.value"
             dense
+            
         ></v-select>
     </div>
 </template>
+
 <script>
 import { BaseCommon } from '@/assets/scripts/Common'
 
 export default {
-    props:['Cond'],
+    props:['Cond','options'],
     data: () => ({
          defaultSelected: {
             code: "",
