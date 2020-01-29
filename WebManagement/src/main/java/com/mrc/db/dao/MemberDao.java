@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mrc.db.dto.member_cond;
 import com.mrc.db.dto.t_member;
@@ -22,44 +25,55 @@ import com.mrc.framework.Global;
 @Repository
 public class MemberDao implements IMemberDao<member_cond, t_member> {
 
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
 	public List<t_member> GetList(member_cond Cond) {
-		if(!StringUtils.isBlank(Cond.getMember_pw()))
+		if (!StringUtils.isBlank(Cond.getMember_pw()))
 			Cond.setMember_pw(Global.SecurityInfo.encryptSHA256(Cond.getMember_pw()));
 		List<t_member> list = GlobalMapper.MemberMapper.getList(Cond);
 		// return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 		return list;
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
 	public t_member GetData(member_cond Cond) {
-		if(!StringUtils.isBlank(Cond.getMember_pw()))
+		if (!StringUtils.isBlank(Cond.getMember_pw()))
 			Cond.setMember_pw(Global.SecurityInfo.encryptSHA256(Cond.getMember_pw()));
 		List<t_member> list = GlobalMapper.MemberMapper.getList(Cond);
 		// return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-		if(list.size() == 1) return list.get(0);
-		else return null;
+		if (list.size() == 1)
+			return list.get(0);
+		else
+			return null;
 	}
 
+	@Transactional
 	@Override
 	public ResultData SaveList(List<t_member> list) {
-		ResultData rtn = new ResultData();
+
+		ResultData rtn = ResultData.builder().enResultType(enResultType.Info).build();
 		try {
 			for (int i = 0; i < list.size(); i++) {
 				GlobalMapper.MemberMapper.Save(list.get(i));
 			}
 		} catch (Exception ex) {
-			rtn = rtn.builder()
-					.enResultType(enResultType.Error)
-					.Message(ex.getMessage()).build();
+			rtn = ResultData.builder().enResultType(enResultType.Error).Message(ex.getMessage()).build();
 		}
 		return rtn;
 	}
 
+	@Transactional
 	@Override
 	public ResultData Save(t_member data) {
-		// TODO Auto-generated method stub
-		GlobalMapper.MemberMapper.Save(data);
+		ResultData rtn = ResultData.builder().enResultType(enResultType.Info).build();
+		try {
+			// TODO Auto-generated method stub
+			GlobalMapper.MemberMapper.Save(data);
+		} catch (Exception ex) {
+			rtn = ResultData.builder().enResultType(enResultType.Error).Message(ex.getMessage()).build();
+
+		}
 		return null;
 	}
 

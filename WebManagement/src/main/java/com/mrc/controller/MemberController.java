@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mrc.db.dao.IMemberDao;
+import com.mrc.db.dao.GlobalDao;
 import com.mrc.db.dto.loginInfo;
 import com.mrc.db.dto.member_cond;
 import com.mrc.db.dto.t_member;
@@ -30,9 +30,7 @@ import com.mrc.db.dto.t_member;
 @Controller
 public class MemberController {
 
-	// 로그인
-	@Autowired
-	private IMemberDao<member_cond, t_member> memberDao;
+
 	@Autowired
 	AuthenticationManager authenticationManager;
 
@@ -47,7 +45,7 @@ public class MemberController {
 
 			session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
 					SecurityContextHolder.getContext());
-			t_member rtn = memberDao.GetData(cond);
+			t_member rtn = GlobalDao.MemberDao.GetData(cond);
 
 			loginInfo logininfo = new loginInfo();
 

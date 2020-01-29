@@ -5,13 +5,13 @@ package com.mrc.db.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author jsh
  *
  */
-@Service
+@Repository
 public class ApiDao  {
 	protected static final String NAMESPACE = "com.mrc.db.dao.";
 

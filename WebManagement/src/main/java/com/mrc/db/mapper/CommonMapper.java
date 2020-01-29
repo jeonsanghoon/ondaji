@@ -8,6 +8,11 @@ import com.mrc.db.dto.common.SelectItem;
 import com.mrc.db.dto.common.common_cond;
 import com.mrc.db.dto.common.t_common;
 
+/**
+ * 공통코드 테이블 맵퍼
+ * @author jsh
+ *
+ */
 @Mapper
 public interface CommonMapper {
 	List<t_common> getList(common_cond Cond);

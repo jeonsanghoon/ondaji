@@ -8,13 +8,12 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author jsh
- *
+ * 글로벌 맵퍼
  */
 @Component
 public class GlobalMapper {
 	
 	public static MemberMapper MemberMapper;
-	
 	public static CommonMapper CommonMapper;
 	
 	@Autowired

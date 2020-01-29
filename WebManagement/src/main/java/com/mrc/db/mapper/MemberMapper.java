@@ -11,6 +11,7 @@ import com.mrc.db.dto.member_cond;
 import com.mrc.db.dto.t_member;
 
 /**
+ * 회원 테이블 맵퍼
  * @author jsh
  *
  */
