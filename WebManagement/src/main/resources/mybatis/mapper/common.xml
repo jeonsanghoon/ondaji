@@ -49,7 +49,7 @@
 		</where>
 	</select>
 
-	<insert id="commonSave"
+	<insert id="Save"
 		parameterType="com.mrc.db.dto.common.t_common">
 		INSERT INTO t_common
 		(main_code, name, order_seq, ref_data1, ref_data2, ref_data3,

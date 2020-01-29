@@ -5,7 +5,7 @@ package com.mrc.db.mapper;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.apache.ibatis.annotations.Mapper;
 
 import com.mrc.db.dto.member_cond;
 import com.mrc.db.dto.t_member;
@@ -14,10 +14,10 @@ import com.mrc.db.dto.t_member;
  * @author jsh
  *
  */
-@Service
+@Mapper
 public interface MemberMapper {
-	void memberSave(t_member data);
-	List<t_member> getMemberList(member_cond Cond);
+	void Save(t_member data);
+	List<t_member> getList(member_cond Cond);
 	void remove(t_member data);
 	void update(t_member data);
 }

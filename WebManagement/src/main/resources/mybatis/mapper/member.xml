@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mrc.db.mapper.MemberMapper">
-	<select id="getMemberList"
+	<select id="getList"
 		parameterType="com.mrc.db.dto.member_cond"
 		resultType="com.mrc.db.dto.t_member">
 		select *
@@ -26,7 +26,7 @@
 		</where>
 	</select>
 
-	<insert id="memberSave" parameterType="com.mrc.db.dto.t_member" >
+	<insert id="Save" parameterType="com.mrc.db.dto.t_member" >
 		INSERT INTO t_member
 		(member_id, member_name, member_pw, insert_code, insert_date, update_code, update_date)
 		values(  #{member_id},  #{member_name},  #{member_pw},  #{update_code},  #{update_date}, #{update_code}, localtime())

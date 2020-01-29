@@ -12,6 +12,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class GlobalMapper {
+	
+	public static MemberMapper MemberMapper;
+	
+	public static CommonMapper CommonMapper;
+	
 	@Autowired
-	public static  MemberMapper MemberMapper;
+	private GlobalMapper(MemberMapper member, CommonMapper common) {
+		MemberMapper = member;
+		CommonMapper = common;
+	}
+	
 }
