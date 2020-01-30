@@ -19,16 +19,17 @@ import com.mrc.db.mapper.GlobalMapper;
 
 /**
  * 공통 Dao
+ * 
  * @author jsh
  *
  */
 @Repository
-public class CommonDao implements ICommonDao<common_cond, t_common,SelectItem> {
+public class CommonDao implements ICommonDao<common_cond, t_common, SelectItem> {
 
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
 	public List<t_common> GetList(common_cond Cond) {
-	
+
 		List<t_common> list = GlobalMapper.CommonMapper.getList(Cond);
 		// return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 		return list;
@@ -39,39 +40,39 @@ public class CommonDao implements ICommonDao<common_cond, t_common,SelectItem> {
 	public t_common GetData(common_cond Cond) {
 		// TODO Auto-generated method stub
 		List<t_common> list = GlobalMapper.CommonMapper.getList(Cond);
-		return null;
+		if (list.size() == 1)
+			return list.get(0);
+		else
+			return null;
 	}
+
 	@Transactional
 	@Override
 	public ResultData SaveList(List<t_common> list) {
 		// TODO Auto-generated method stub
-		ResultData rtn = new ResultData();
+		ResultData rtn = ResultData.builder().enResultType(enResultType.Info).build();
 		try {
 			for (int i = 0; i < list.size(); i++) {
 				GlobalMapper.CommonMapper.Save(list.get(i));
 			}
 		} catch (Exception ex) {
-			rtn = rtn.builder()
-					.enResultType(enResultType.Error)
-					.Message(ex.getMessage()).build();
+			rtn = ResultData.builder().enResultType(enResultType.Error).Message(ex.getMessage()).build();
 		}
 		return rtn;
 	}
+
 	@Transactional
 	@Override
 	public ResultData Save(t_common data) {
 		ResultData rtn = ResultData.builder().enResultType(enResultType.Info).build();
 		try {
-			GlobalMapper.CommonMapper.Save(data);	
-			 
-		}catch(Exception ex) {
-			rtn.builder().enResultType(enResultType.Error).Message(ex.getMessage());
+			GlobalMapper.CommonMapper.Save(data);
+		} catch (Exception ex) {
+			rtn = ResultData.builder().enResultType(enResultType.Error).Message(ex.getMessage()).build();
 		}
-	
-		// TODO Auto-generated method stub
 		return rtn;
-		
 	}
+
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	@Override
 	public List<SelectItem> getSelectItemList(common_cond Cond) {

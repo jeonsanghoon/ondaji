@@ -74,7 +74,7 @@ public class MemberDao implements IMemberDao<member_cond, t_member> {
 			rtn = ResultData.builder().enResultType(enResultType.Error).Message(ex.getMessage()).build();
 
 		}
-		return null;
+		return rtn;
 	}
 
 }
