@@ -15,8 +15,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import com.mrc.db.dao.IMemberDao;
 import com.mrc.db.dao.MemberDao;
+import com.mrc.db.dao.impl.IMemberDao;
 import com.mrc.db.dto.member_cond;
 import com.mrc.db.dto.t_member;
 

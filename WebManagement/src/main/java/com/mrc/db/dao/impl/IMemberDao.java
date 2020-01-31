@@ -1,4 +1,4 @@
-package com.mrc.db.dao;
+package com.mrc.db.dao.impl;
 
 import com.mrc.db.dto.member.member_cond;
 import com.mrc.db.dto.member.t_member;

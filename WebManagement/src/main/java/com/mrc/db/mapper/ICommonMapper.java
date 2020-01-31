@@ -14,7 +14,7 @@ import com.mrc.db.dto.common.t_common;
  *
  */
 @Mapper
-public interface CommonMapper {
+public interface ICommonMapper {
 	List<t_common> getList(common_cond Cond);
 	List<SelectItem> getSelectItemList(common_cond Cond);
 	void Save(t_common data);

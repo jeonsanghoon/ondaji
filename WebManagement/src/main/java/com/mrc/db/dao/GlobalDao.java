@@ -6,6 +6,8 @@ package com.mrc.db.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mrc.db.dao.impl.ICommonDao;
+import com.mrc.db.dao.impl.IMemberDao;
 import com.mrc.db.dto.member_cond;
 import com.mrc.db.dto.t_member;
 import com.mrc.db.dto.common.SelectItem;

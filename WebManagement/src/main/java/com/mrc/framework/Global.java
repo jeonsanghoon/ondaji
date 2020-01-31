@@ -28,6 +28,5 @@ public class Global {
 		SecurityInfo = new SecurityInfo();
 		DataInfo = new DataInfo();
 		FileInfo = new FileInfo();
-	
 	}
 }

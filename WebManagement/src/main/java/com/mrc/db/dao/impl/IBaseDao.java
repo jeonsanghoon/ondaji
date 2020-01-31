@@ -1,4 +1,4 @@
-package com.mrc.db.dao;
+package com.mrc.db.dao.impl;
 
 import java.util.List;
 

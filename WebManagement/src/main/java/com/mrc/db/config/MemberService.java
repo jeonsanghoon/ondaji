@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mrc.db.dao.IMemberDao;
 import com.mrc.db.dao.MemberDao;
+import com.mrc.db.dao.impl.IMemberDao;
 import com.mrc.db.dto.member_cond;
 import com.mrc.db.dto.t_member;
 import com.mrc.db.dto.common.ResultData;

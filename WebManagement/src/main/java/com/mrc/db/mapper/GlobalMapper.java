@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class GlobalMapper {
 	
-	public static MemberMapper MemberMapper;
-	public static CommonMapper CommonMapper;
+	public static IMemberMapper MemberMapper;
+	public static ICommonMapper CommonMapper;
 	
 	@Autowired
-	private GlobalMapper(MemberMapper member, CommonMapper common) {
+	private GlobalMapper(IMemberMapper member, ICommonMapper common) {
 		MemberMapper = member;
 		CommonMapper = common;
 	}
