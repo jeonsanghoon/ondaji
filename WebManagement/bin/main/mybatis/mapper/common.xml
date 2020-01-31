@@ -8,11 +8,12 @@
 		select *
 		from t_common
 		<where>
-			<if test="code != null ">
-				and code LIKE #{code}
-			</if>
+			
 			<if test="main_code != null and main_code != '' ">
 				and main_code = #{main_code}
+			</if>
+			<if test="sub_code != null ">
+				and sub_code LIKE #{sub_code}
 			</if>
 			<if test="name != null and name != '' ">
 				and name LIKE CONCAT('%', #{name}, '%')
@@ -31,11 +32,11 @@
 		select *
 		from t_common
 		<where>
-			<if test="code != null ">
-				and code LIKE #{code}
-			</if>
 			<if test="main_code != null and main_code != '' ">
 				and main_code = #{main_code}
+			</if>
+			<if test="sub_code != null ">
+				and sub_code LIKE #{sub_code}
 			</if>
 			<if test="name != null and name != '' ">
 				and name LIKE CONCAT('%', #{name}, '%')
@@ -49,17 +50,30 @@
 		</where>
 	</select>
 
-	<insert id="Save"
-		parameterType="com.mrc.db.dto.common.t_common">
+	<insert id="Save" parameterType="com.mrc.db.dto.common.t_common">
+		
+		set @sub_code = 0;
+		
+		<choose>
+			<when test="sub_code == null  ">
+				set @sub_code = (select ifnull(max(SUB_CODE),0) + 1 from t_common
+				where main_code =  #{main_code});
+			</when>
+			<otherwise>
+				set @sub_code = #{sub_code};
+			</otherwise>
+		</choose>
+	
+			
 		INSERT INTO t_common
-		(main_code, name, order_seq, ref_data1, ref_data2, ref_data3,
+		(main_code, sub_code, name, order_seq, ref_data1, ref_data2, ref_data3,
 		ref_data4, hide, insert_code, insert_date, update_code, update_date)
-		values( #{main_code}, #{name}, #{order_seq}, #{ref_data1},
+		values( #{main_code}, @sub_code, #{name}, #{order_seq}, #{ref_data1},
 		#{ref_data2}, #{ref_data3}, #{ref_data4}, #{hide}, #{update_code},
 		#{update_date}, #{update_code}, localtime())
 		ON DUPLICATE KEY UPDATE
-		main_code = #{main_code}
-		, order_seq = #{order_seq}
+		  name      = #{name}
+		, order_seq = #{order_seq} 
 		, ref_data1 = #{ref_data1}
 		, ref_data2 = #{ref_data2}
 		, ref_data3 = #{ref_data3}
@@ -75,11 +89,11 @@
 		parameterType="com.mrc.db.dto.common.t_common">
 		delete from t_common
 		<where>
-			<if test="code != null ">
-				and code like #{code}
-			</if>
 			<if test="main_code != null and main_code != '' ">
 				and main_code = #{main_code}
+			</if>
+			<if test="sub_code != null ">
+				and sub_code like #{code}
 			</if>
 		</where>
 	</delete>
@@ -90,17 +104,17 @@
 		parameterType="com.mrc.db.dto.common.t_common">
 
 		update T_common
-		set main_code = #{main_code}
-		, order_seq = #{order_seq}
-		, ref_data1 = #{ref_data1}
-		, ref_data2 = #{ref_data2}
-		, ref_data3 = #{ref_data3}
-		, ref_data4 = #{ref_data4}
-		, hide = #{hide}
-		, update_code = #{update_code}
-		, update_date = localtime();
-
-		where code = #{code}
+		set name = #{name}
+		  , order_seq   = #{order_seq}
+		  , ref_data1   = #{ref_data1}
+		  , ref_data2   = #{ref_data2}
+		  , ref_data3   = #{ref_data3}
+		  , ref_data4   = #{ref_data4}
+		  , hide        = #{hide}
+		  , update_code = #{update_code}
+		  , update_date = localtime();
+        where main_code = #{main_code}
+		  and sub_code  = #{sub_code}
 
 	</update>
 

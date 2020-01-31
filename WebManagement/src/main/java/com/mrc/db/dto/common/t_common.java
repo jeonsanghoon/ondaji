@@ -4,21 +4,19 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mrc.db.dto.t_member.t_memberBuilder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class t_common implements Serializable {
-	private Integer code;
 	private String main_code;
+	private Integer sub_code;
 	private String name;
 	private int order_seq;
 	private String ref_data1;
