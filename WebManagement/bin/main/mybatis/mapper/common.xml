@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mrc.db.mapper.CommonMapper">
+<mapper namespace="com.mrc.db.mapper.ICommonMapper">
 	<select id="getList"
 		parameterType="com.mrc.db.dto.common.common_cond"
 		resultType="com.mrc.db.dto.common.t_common">

@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.mrc.db.dto.member_cond;
-import com.mrc.db.dto.t_member;
+import com.mrc.db.dto.member.member_cond;
+import com.mrc.db.dto.member.t_member;
 
 /**
  * 회원 테이블 맵퍼

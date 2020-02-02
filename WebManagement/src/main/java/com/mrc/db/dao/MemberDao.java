@@ -12,10 +12,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mrc.db.dao.impl.IMemberDao;
-import com.mrc.db.dto.member_cond;
-import com.mrc.db.dto.t_member;
 import com.mrc.db.dto.common.ResultData;
 import com.mrc.db.dto.common.enResultType;
+import com.mrc.db.dto.member.member_cond;
+import com.mrc.db.dto.member.t_member;
 import com.mrc.db.mapper.GlobalMapper;
 import com.mrc.framework.Global;
 

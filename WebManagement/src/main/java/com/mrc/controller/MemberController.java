@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mrc.db.dao.GlobalDao;
-import com.mrc.db.dto.loginInfo;
-import com.mrc.db.dto.member_cond;
-import com.mrc.db.dto.t_member;
+import com.mrc.db.dto.member.loginInfo;
+import com.mrc.db.dto.member.member_cond;
+import com.mrc.db.dto.member.t_member;
 
 /**
  * @author jsh

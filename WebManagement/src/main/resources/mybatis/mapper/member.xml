@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mrc.db.mapper.MemberMapper">
+<mapper namespace="com.mrc.db.mapper.IMemberMapper">
 	<select id="getList"
-		parameterType="com.mrc.db.dto.member_cond"
-		resultType="com.mrc.db.dto.t_member">
+		parameterType="com.mrc.db.dto.member.member_cond"
+		resultType="com.mrc.db.dto.member.t_member">
 		select *
 		from t_member
 		<where>
@@ -26,7 +26,7 @@
 		</where>
 	</select>
 
-	<insert id="Save" parameterType="com.mrc.db.dto.t_member" >
+	<insert id="Save" parameterType="com.mrc.db.dto.member.t_member" >
 		INSERT INTO t_member
 		(member_id, member_name, member_pw, insert_code, insert_date, update_code, update_date)
 		values(  #{member_id},  #{member_name},  #{member_pw},  #{update_code},  #{update_date}, #{update_code}, localtime())
@@ -40,7 +40,7 @@
 
 
 
-	<delete id="remove" parameterType="com.mrc.db.dto.t_member">
+	<delete id="remove" parameterType="com.mrc.db.dto.member.t_member">
 		delete from t_member
 		<where>
 			<if test="MEMBER_CODE != null ">
@@ -54,7 +54,7 @@
 
 
 
-	<update id="update" parameterType="com.mrc.db.dto.t_member">
+	<update id="update" parameterType="com.mrc.db.dto.member.t_member">
 
 		update T_MEMBER
 

@@ -19,6 +19,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SelectItem implements Serializable {
-	private int code;
+	private Integer sub_code;
 	private String name;
 }

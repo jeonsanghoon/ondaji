@@ -1,4 +1,4 @@
-package com.mrc.db.dto;
+package com.mrc.db.dto.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

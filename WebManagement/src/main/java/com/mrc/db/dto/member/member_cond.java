@@ -17,5 +17,6 @@ public class member_cond implements Serializable {
 	private String member_id;
 	private String member_pw;
 	private String member_name;
+	private Boolean hide;
 	
 }

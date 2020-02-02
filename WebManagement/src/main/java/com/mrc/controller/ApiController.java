@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mrc.db.dao.GlobalDao;
-import com.mrc.db.dto.member_cond;
-import com.mrc.db.dto.t_member;
 import com.mrc.db.dto.common.ResultData;
+import com.mrc.db.dto.member.member_cond;
+import com.mrc.db.dto.member.t_member;
 import com.mrc.framework.Global;
 
 /**

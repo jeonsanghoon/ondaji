@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 
 import com.mrc.db.dao.impl.ICommonDao;
 import com.mrc.db.dao.impl.IMemberDao;
-import com.mrc.db.dto.member_cond;
-import com.mrc.db.dto.t_member;
 import com.mrc.db.dto.common.SelectItem;
 import com.mrc.db.dto.common.common_cond;
 import com.mrc.db.dto.common.t_common;
+import com.mrc.db.dto.member.member_cond;
+import com.mrc.db.dto.member.t_member;
 
 /**
  * @author jsh
