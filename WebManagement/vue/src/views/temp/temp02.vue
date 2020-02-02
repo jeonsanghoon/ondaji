@@ -19,7 +19,7 @@
     <v-btn @click="fileDownload">파일다운로드</v-btn>
 
       <Vuetify-textbox :options="inputOptions" :value="formData.inputValue"></Vuetify-textbox>
-      <Vuetify-selectsCommon :options="selectOption" :Cond="selectCond"></Vuetify-selectsCommon>
+      <Vuetify-selectsCommon :options="selectOption"></Vuetify-selectsCommon>
   </div>
             </v-col>
         </v-row>
@@ -51,11 +51,10 @@ export default {
         }
       },
       inputOptions :{ label:'라벨', value:"123456", icon:"home",color:"#f45525" }
-      ,selectOption : {label:'콤보박스',value:1}
+      ,selectOption : {main_code:"A001",hide:false, label:'권한',value:10}
       ,formData : {
         inputValue:"테스트당" 
-      },
-      selectCond:{main_code:"A001",hide:false}
+      }
     };
   },
  methods:{
