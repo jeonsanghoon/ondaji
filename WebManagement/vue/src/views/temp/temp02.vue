@@ -18,7 +18,7 @@
     </vue-dropzone>
     <v-btn @click="fileDownload">파일다운로드</v-btn>
 
-      <Vuetify-textbox :options="inputOptions" :value="formData.inputValue"></Vuetify-textbox>
+      <Vuetify-textbox :options="formData.inputOptions" :value="formData.models.inputValue"></Vuetify-textbox>
       <Vuetify-selectsCommon :options="selectOption"></Vuetify-selectsCommon>
   </div>
             </v-col>
@@ -50,10 +50,10 @@ export default {
             })
         }
       },
-      inputOptions :{ label:'라벨', value:"123456", icon:"home",color:"#f45525" }
-      ,selectOption : {main_code:"A001",hide:false, label:'권한',value:10}
+      selectOption : {main_code:"A001",hide:false, label:'권한',value:10}
       ,formData : {
-        inputValue:"테스트당" 
+        inputOptions :{ label:'라벨', value:"123456", icon:"home",essentials:true },
+        models : {inputValue:"테스트당" }
       }
     };
   },

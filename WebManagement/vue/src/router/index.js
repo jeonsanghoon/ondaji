@@ -47,6 +47,17 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/member/login.vue' )
   },
   {
+    path: '/member/register',
+    name: '회원등록' ,
+    beforeRouteEnter :(to, from, next)=>{
+      console.log(to);
+      console.log(from);
+      console.log(next);
+      this.$store.dispatch('baseStore/setIsShowBar',false);
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/member/register.vue' )
+  },
+  {
     path: '/temp/temp01',
     name: '템플릿',
     component: () => import(/* webpackChunkName: "about" */ '../views/temp/templeate01.vue' )

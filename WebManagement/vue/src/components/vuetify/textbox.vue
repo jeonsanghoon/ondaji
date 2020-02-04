@@ -4,14 +4,7 @@
             autofocus
             type="text"
             ref="value"
-            :rules="rules.required"
-            v-bind:color="options.color"
-            v-bind:prepend-icon="options.icon"
-            v-bind:label="options.label"
-            v-bind:id="options.id"
-            v-bind:name="options.id"
-            v-bind:value="value"
-            v-on:input="$emit('input', $event.target.value)"
+         
           ></v-text-field>
     </div>
 </template>

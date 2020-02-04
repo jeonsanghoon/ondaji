@@ -27,10 +27,18 @@
     </v-footer>
   </v-app>
 </template>
-
+<style lang="scss">
+@import '@/assets/styles/index.scss';
+/* Remove in 1.2 */
+.v-datatable thead th.column.sortable i {
+  vertical-align:unset;
+}
+</style>
 <script>
 import mainmenu from '@/components/mainmenu'
 import { BaseCommon } from '@/assets/scripts/Common'
+
+
 export default {
   components: {
     mainmenu
